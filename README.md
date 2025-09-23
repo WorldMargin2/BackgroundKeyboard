@@ -80,7 +80,7 @@ void bind(){
      keysBinding.removeKeyFunction(Keys.Ctrl,Keys.A);//用键组解绑
      int errcode=keysBinding.removeKeyFunction(a);//获取错误码，100为成功
      if(errcode!=100){
-        MessageBox.Show(keysBinding.getErr(errcode));//获取错误信息
+        MessageBox.Show(keysBinding.getError(errcode));//获取错误信息
      }
 }
 ```
