@@ -16,6 +16,10 @@ namespace BackgroundKeyboard {
         private KeyGridBinding binding;
         public Form1() {
             InitializeComponent();
+            init();
+        }
+
+        void init() { 
             binding = new KeyGridBinding(dataGridView1);
             binding.startListen();
             this.FormClosed += (s, e) => {

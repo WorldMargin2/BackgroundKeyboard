@@ -2,8 +2,6 @@
 
 # 关于本项目：
 
-
-
 ## 一、用处
 
             本项目为基于C#开发的后台按键监控项目，，用于在程序窗口处于后台时能够监听前台的按键，例如热键唤起、快捷操作等。
@@ -15,8 +13,6 @@
                         将项目中的`KeyBoardHook.cs`添加到您的项目，同时引用命名空间`using KeysBinding;`
 
 ```csharp
-
-
 bool is_hooked=false;
 private KeyEventHandler keyEventHandler;
 private KeyboardHook hook = new KeyboardHook();
@@ -46,7 +42,6 @@ public void stopListen() {
                         将项目中的`KeyBoardHook.cs` `KeysBinding.cs`添加到您的项目，同时引用命名空间`using KeysBinding;`
 
 ```csharp
-
 bool is_hooked=false;
 private KeyEventHandler keyEventHandler;
 private KeyboardHook hook = new KeyboardHook();
@@ -71,6 +66,23 @@ public void stopListen() {
         hook.Stop();//解除钩子
     }
 } 
+
+
+void bind(){
+     Action a=()=>{
+        MessageBox.Show("Ctrl A Handled!");
+     };
+     keyBinding.registKeyFunction(
+        Keys.Ctrl,Keys.A,
+        a,//lambda function
+        Forced);
+     keysBinding.removeKeyFunction(a);//用函数解绑
+     keysBinding.removeKeyFunction(Keys.Ctrl,Keys.A);//用键组解绑
+     int errcode=keysBinding.removeKeyFunction(a);//获取错误码，100为成功
+     if(errcode!=100){
+        MessageBox.Show(keysBinding.getErr(errcode));//获取错误信息
+     }
+}
 ```
 
 ### 3.用户事件自定义一站式解决方案：
