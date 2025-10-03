@@ -246,12 +246,12 @@ namespace KeysBinding {
             return registedKeys[function];
         }
 
-        public int registKeyFunction(Keys modifier, Keys key, Action function,bool Forced=false) {
+        public int registKeyFunction(Keys modifier, Keys key, Action function, bool Forced = false) {
             if (modifier == key) {
                 return 0;
-            } else if (!registedFunctions.ContainsKey(modifier) ) {
+            } else if (!registedFunctions.ContainsKey(modifier)) {
                 return 1;
-            } else if (key != Keys.None && !reverseKeyNames.ContainsKey(key)) {
+            } else if (key != Keys.None && !reverseKeyNames.ContainsKey(key) || (key == Keys.Control) || (key == Keys.Alt)|| (key==Keys.Shift)) {
                 return 2;
             } else if (registedFunctions[modifier].ContainsKey(key) && !Forced) {
                 return 3;

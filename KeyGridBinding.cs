@@ -97,6 +97,35 @@ namespace KeysBinding {
             return bind(name, action, m, k, Forced);
         }
 
+        public int bind(string name, Action action, string modifire,Keys key, bool Forced = false) {
+            Keys m;
+            switch (modifire) {
+                case "Shift":
+                    m = Keys.Shift;
+                    break;
+                case "Ctrl":
+                    m = Keys.Control;
+                    break;
+                case "Alt":
+                    m = Keys.Alt;
+                    break;
+                default:
+                    m = Keys.None;
+                    break;
+            }
+            return bind(name, action, m, key, Forced);
+        }
+
+        public int bind(string name, Action action, Keys modifire, string key, bool Forced = false) {
+            Keys k;
+            if (!KeysBinding.KeyNames.ContainsKey(key)) {
+                return -1;
+            } else {
+                k = KeysBinding.KeyNames[key];
+            }
+            return bind(name, action, modifire, k, Forced);
+        }
+
         public int unbind(string name) {
             Action action;
             GridBinding.TryGetValue(name, out action);
